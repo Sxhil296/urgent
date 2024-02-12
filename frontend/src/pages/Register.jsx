@@ -77,6 +77,7 @@ const Register = () => {
           Register
         </button>
       </form>
+      {error && <h3 className="text-red-500 text-sm">Something went wrong!</h3> }
       <p className="mt-4 text-gray-700">
         Already have an account?{" "}
         <Link to="/login" className="text-blue-500 hover:underline">
