@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useState } from 'react';
 
 const ContactUs = () => {
@@ -16,17 +17,31 @@ const ContactUs = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // You can handle form submission here, e.g., sending the data to your backend
-    console.log(formData);
-    // Reset form fields after submission
-    setFormData({
-      name: '',
-      email: '',
-      subject: '',
-      message: ''
-    });
+    try {
+      // Send form data to backend
+      const response = await axios.post('/api/form/submit', formData);
+
+      // Log response from backend (optional)
+      console.log(response.data);
+
+      // Reset form fields after successful submission
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+      });
+
+      // Optionally, display a success message to the user
+      alert('Form submitted successfully!');
+    } catch (error) {
+      // Handle errors from backend
+      console.error('Error submitting form:', error);
+      // Optionally, display an error message to the user
+      alert('An error occurred while submitting the form. Please try again later.');
+    }
   };
 
   return (

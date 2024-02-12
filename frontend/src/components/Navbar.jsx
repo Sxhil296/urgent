@@ -1,7 +1,11 @@
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { UserContext } from '../context/UserContext';
 
 const Navbar = () => {
-  const user = false; // Example: Set to true if the user is logged in
+  const {user} = useContext(UserContext)
+  // console.log(user);
+
   return (
     <nav className="bg-gray-800 text-white p-4 flex justify-between items-center">
       {/* Left side */}
@@ -20,8 +24,16 @@ const Navbar = () => {
         {user && <Link to="/contact" className="hover:text-gray-300">Contact</Link>}
 
         {/* Render login/logout and register links */}
-        {user ? <Link to="/login" className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">Log Out</Link> : <Link to="/login" className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">Log In</Link>}
-        {!user && <Link to="/register" className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">Register</Link>}
+        {user ? (
+          <>
+            <Link to="/login" className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">Log Out</Link>
+          </>
+        ) : (
+          <>
+            <Link to="/login" className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">Log In</Link>
+            <Link to="/register" className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">Register</Link>
+          </>
+        )}
       </div>
     </nav>
   );
