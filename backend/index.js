@@ -16,7 +16,7 @@ const connectDB = async () => {
 
 // middlewares
 dotenv.config();
-app.use(express.json);
+app.use(express.json());
 app.use("/api/auth", authRoute);
 
 app.listen(process.env.PORT, () => {
