@@ -13,8 +13,9 @@ const connectDB = async () => {
   }
 };
 
+// middlewares
 dotenv.config();
-app.listen(5000, () => {
+app.listen(process.env.PORT, () => {
   connectDB();
-  console.log("server started");
+  console.log("app is running on port "+process.env.PORT);
 });
