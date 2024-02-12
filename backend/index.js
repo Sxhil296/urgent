@@ -29,6 +29,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
 const dotenv = require("dotenv");
+const cors = require("cors")
 const authRoute = require("./routes/auth");
 const formRoute = require("./routes/form"); // Import the form route
 
@@ -45,6 +46,7 @@ const connectDB = async () => {
 // Middleware
 dotenv.config();
 app.use(express.json());
+app.use(cors({origin:"http://localhost:5173", credentials:true}))
 
 // Routes
 app.use("/api/auth", authRoute);
